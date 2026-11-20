@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState, type MouseEvent } from "react";
 
 type Theme = "light" | "dark";
 
-let pageAnimationTimer: ReturnType<typeof setTimeout> | undefined;
+let pageAnimationTimer: number | undefined;
 
 function animatePageSections() {
   const root = document.documentElement;
