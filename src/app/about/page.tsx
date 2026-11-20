@@ -1,0 +1,6 @@
+import Link from "next/link";
+import { ArrowUpRight, MapPin, UserRound } from "lucide-react";
+import { portfolio } from "@/data/portfolio";
+import { InnerShell, PageSection } from "@/components/inner-shell";
+export const metadata = { title: "About | Developer Portfolio" };
+export default function AboutPage() {return <InnerShell title="About me" eyebrow="PROFILE" description="My background, interests, and approach to software development."><PageSection title="Introduction" label="WHO I AM"><p className="inner-body-text">{portfolio.summary}</p><p className="inner-body-text">I focus on creating useful applications, writing maintainable code, and improving through hands-on projects and learning.</p><div className="about-facts"><div><UserRound size={18}/><span>{portfolio.role}</span></div><div><MapPin size={18}/><span>{portfolio.location}</span></div></div></PageSection><PageSection title="What I'm working toward" label="FOCUS"><p className="inner-body-text">Building more complete projects, expanding my technical foundation, and learning how to take an idea from problem definition to a working application.</p><Link className="inline-cta" href="/projects">Explore my projects <ArrowUpRight size={16}/></Link></PageSection></InnerShell>}
