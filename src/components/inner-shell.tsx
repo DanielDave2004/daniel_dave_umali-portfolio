@@ -1,6 +1,7 @@
 "use client";
 
 import { media } from "@/data/media";
+import { BrandLogo } from "@/components/brand-logo";
 
 import { useState, type ReactNode } from "react";
 import { usePortfolioTheme } from "@/components/use-portfolio-theme";
@@ -28,7 +29,7 @@ export function InnerShell({ children, title, description, eyebrow = "PORTFOLIO"
   return <div className="site-shell">
     <header className="topbar"><div className="topbar-inner inner-topbar">
       <button className="icon-button mobile-menu" onClick={() => setMenuOpen(true)} aria-label="Open navigation"><Menu size={20}/></button>
-      <Link className="brand" href="/"><span className="brand-mark">{portfolio.initials}</span><span className="brand-name">{portfolio.name}<small>DEVELOPER SPACE</small></span></Link>
+      <Link className="brand" href="/"><span className="brand-mark brand-mark--logo"><BrandLogo className="brand-logo-svg" /></span><span className="brand-name">{portfolio.name}<small>DEVELOPER SPACE</small></span></Link>
       <nav className="inner-quick-links" aria-label="Quick links"><Link href="/projects">Projects</Link><Link href="/achievements">Achievements</Link></nav>
       <button className="icon-button inner-theme" onClick={toggleTheme} aria-label="Toggle dark mode">{theme === "light" ? <Moon size={19}/> : <Sun size={19}/>}</button>
     </div></header>

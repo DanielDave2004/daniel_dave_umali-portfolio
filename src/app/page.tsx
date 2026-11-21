@@ -2,6 +2,7 @@
 
 import { ResumeModalButton } from "@/components/resume-modal";
 import { media } from "@/data/media";
+import { BrandLogo } from "@/components/brand-logo";
 
 import { useMemo, useState } from "react";
 import { usePortfolioTheme } from "@/components/use-portfolio-theme";
@@ -77,10 +78,10 @@ export default function OverviewPage() {
     <header className="topbar">
       <div className="topbar-inner">
         <button className="mobile-menu icon-button" aria-label="Open navigation" onClick={() => setMobileOpen(true)}><Menu size={21}/></button>
-        <button className="brand" onClick={() => jump("top")} aria-label="Go to top"><span className="brand-mark">{portfolio.initials || monogram(portfolio.name)}</span><span className="brand-name">{portfolio.name}<small>DEVELOPER SPACE</small></span></button>
+        <button className="brand" onClick={() => jump("top")} aria-label="Go to top"><span className="brand-mark brand-mark--logo"><BrandLogo className="brand-logo-svg" /></span><span className="brand-name">{portfolio.name}<small>DEVELOPER SPACE</small></span></button>
         <div className="header-search"><Search size={17}/><input aria-label="Search projects" placeholder="Search projects and skills..." value={query} onChange={e => {setQuery(e.target.value);setSearchOpen(Boolean(e.target.value));}} onFocus={() => setSearchOpen(Boolean(query))}/><kbd>/</kbd>{searchOpen && <div className="search-results"><span className="eyebrow">SEARCH RESULTS</span>{filteredProjects.length ? filteredProjects.map(p => <button key={p.number} onClick={() => jump("projects")}><BriefcaseBusiness size={15}/>{p.title}<ArrowRight size={14}/></button>) : <p>No matching projects. Try a different keyword.</p>}</div>}</div>
         <nav className="header-links" aria-label="Quick links"><Link href="/projects">Work</Link><Link href="/achievements">Achievements</Link></nav>
-        <div className="header-actions"><button className="icon-button theme-button" title="Toggle theme" aria-label="Toggle theme" onClick={toggleTheme}>{theme === "light" ? <Moon size={19}/> : <Sun size={19}/>}</button><button className="header-avatar" onClick={() => jump("overview")} aria-label="View profile"><Avatar size="small"/></button></div>
+        <div className="header-actions"><button className="icon-button theme-button" title="Toggle theme" aria-label="Toggle theme" onClick={toggleTheme}>{theme === "light" ? <Moon size={19}/> : <Sun size={19}/>}</button></div>
       </div>
     </header>
     {mobileOpen && <div className="drawer-shade" onClick={() => setMobileOpen(false)}/>}

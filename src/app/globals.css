@@ -79,26 +79,6 @@
 }
 
 
-/* Page-wide theme feedback, following the circular light/dark reveal.
-   Applies to Overview, Projects, Certifications, Competitions, and every other route. */
-@media (prefers-reduced-motion: no-preference) {
-  :root[data-page-theme-animation="true"] .site-shell .topbar,
-  :root[data-page-theme-animation="true"] .site-shell .left-sidebar,
-  :root[data-page-theme-animation="true"] .site-shell .right-sidebar,
-  :root[data-page-theme-animation="true"] .site-shell .main-column > .panel,
-  :root[data-page-theme-animation="true"] .site-shell .main-column > section,
-  :root[data-page-theme-animation="true"] .site-shell .main-column > .feed-intro {
-    animation: portfolio-theme-settle 420ms cubic-bezier(.2,.7,.2,1) both;
-  }
-  :root[data-page-theme-animation="true"] .site-shell .main-column > :nth-child(2) { animation-delay: 45ms; }
-  :root[data-page-theme-animation="true"] .site-shell .main-column > :nth-child(3) { animation-delay: 85ms; }
-  :root[data-page-theme-animation="true"] .site-shell .main-column > :nth-child(n+4) { animation-delay: 120ms; }
-  @keyframes portfolio-theme-settle {
-    from { opacity: .78; transform: translateY(7px); filter: brightness(.96); }
-    to { opacity: 1; transform: translateY(0); filter: brightness(1); }
-  }
-}
-
 /* Content-sized tech badges, grouped by skill category */
 .tech-grid { display:flex !important; flex-wrap:wrap; align-items:flex-start; justify-content:flex-start; gap:7px !important; }
 .tech-item { display:inline-flex !important; flex:0 0 auto; width:max-content; max-width:100%; white-space:nowrap; padding:7px 10px !important; gap:7px; }
@@ -248,3 +228,56 @@
 .rocket-game-hint strong { color:var(--text); }
 .rocket-game-hint kbd { display:inline-block;border:1px solid var(--line);padding:1px 5px;border-radius:2px;color:var(--text);background:var(--surface-2);font:700 11px ui-monospace,monospace; }
 @media(max-width:480px) { .rocket-game-panel {padding:10px;} .rocket-game-scoreboard>div{padding:11px 8px;} .rocket-game-controls button{flex:1;padding:10px;} .rocket-game-controls .rocket-game-secondary span{display:none;} .rocket-game-indicator{font-size:9px;} }
+
+
+
+/* DD vector mark: no square, no raster and no forced background. */
+.brand-mark.brand-mark--logo {
+  width: 46px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  transition: color 320ms ease;
+}
+.brand-logo-svg { display: block; width: 100%; height: 100%; overflow: visible; }
+
+/* Smooth palette transitions with no shifting, scaling or bouncing of page sections. */
+@media (prefers-reduced-motion: no-preference) {
+  html, body, .site-shell, .topbar, .panel,
+  .left-sidebar, .right-sidebar, .brand-mark--logo,
+  .side-nav a, .icon-button {
+    transition-property: background-color, border-color, color, box-shadow;
+    transition-duration: 340ms;
+    transition-timing-function: ease;
+  }
+  .theme-button svg, .inner-theme svg { transition: opacity 180ms ease; }
+}
+
+/* On small screens the drawer must stay off-canvas until Menu is pressed.
+   Never include the drawer in page theme keyframe animations. */
+@media (max-width: 760px) {
+  .brand-mark.brand-mark--logo { width: 40px; height: 30px; }
+  .left-sidebar:not(.left-sidebar--open) {
+    transform: translate3d(-110%,0,0);
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .left-sidebar.left-sidebar--open {
+    transform: translate3d(0,0,0);
+    visibility: visible;
+    pointer-events: auto;
+  }
+  .left-sidebar {
+    transition: transform 220ms ease, visibility 220ms ease,
+                background-color 340ms ease, border-color 340ms ease;
+  }
+  /* No transition overlays on mobile: native color changes are more stable. */
+  ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0ms !important; }
+}
