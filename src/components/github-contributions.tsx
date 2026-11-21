@@ -85,16 +85,16 @@ export function GithubContributions({ username = "DanielDave2004", compact = fal
       {status === "ready" && (
         <>
           <div className="gh-contributions__calendar" style={{ "--gh-weeks": calendar.weeks } as React.CSSProperties}>
-            <div className="gh-contributions__weekdays" aria-hidden="true">
-              <span /> <span>Mon</span> <span /> <span>Wed</span> <span /> <span>Fri</span> <span />
-            </div>
             <div className="gh-contributions__chart">
               <div className="gh-contributions__months" aria-hidden="true">
                 {calendar.months.map((month, index) => (
                   <span key={`${month.week}-${index}`} style={{ gridColumn: month.week + 1 }}>{month.label}</span>
                 ))}
               </div>
-              <div className="gh-contributions__grid" role="img" aria-label={`${total.toLocaleString()} contributions over the past year for ${username}`}>
+              <div className="gh-contributions__grid" role="group" aria-label={`${total.toLocaleString()} contributions over the past year for ${username}`}>
+                <div className="gh-contributions__weekdays" aria-hidden="true">
+                  <span /> <span>Mon</span> <span /> <span>Wed</span> <span /> <span>Fri</span> <span />
+                </div>
                 {calendar.cells.map((day, index) => (
                   <span
                     key={day?.date ?? `empty-${index}`}

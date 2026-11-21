@@ -121,8 +121,8 @@ export const certifications = [
     credentialUrl: "",
     description: "Responsive Web Design certification.",
     example: false,
-    image: "/certificates/sample-responsive-web-design.jpg", // Replace with your actual certificate image
-    imageIsSample: true,
+    image: "/certificates/responsive-web-design.jpg", // Replace with your actual certificate image
+    imageIsSample: false,
   },
 ];
 
@@ -137,8 +137,8 @@ export const competitions = [
     description: "Participated in the IT Quiz Bee as part of the ISITE National IT Skills Competition.",
     link: "",
     example: false,
-    image: "/certificates/sample-isite-quiz-bee.jpg", // Replace with your actual participation certificate
-    imageIsSample: true,
+    image: "/certificates/isite-quiz-bee.jpg", // Replace with your actual participation certificate
+    imageIsSample: false,
   },
 ];
 
