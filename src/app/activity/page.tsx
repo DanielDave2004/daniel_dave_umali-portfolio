@@ -1,6 +1,18 @@
-import { CalendarDays } from "lucide-react";
 import { GithubContributions } from "@/components/github-contributions";
-import { activities } from "@/data/portfolio";
-import { ExampleLabel, InnerShell, PageSection } from "@/components/inner-shell";
+import { InnerShell, PageSection } from "@/components/inner-shell";
+
 export const metadata = { title: "Activity | Developer Portfolio" };
-export default function ActivityPage(){return <InnerShell title="Activity" eyebrow="UPDATES & MILESTONES" description="A feed-style record of what I'm building, studying, and sharing."><PageSection title="GitHub contributions" label="PUBLIC GITHUB ACTIVITY"><GithubContributions/></PageSection><PageSection title="Recent updates" label="TIMELINE"><div className="activity-timeline">{activities.map(a=><article key={a.id} className="timeline-entry"><div className="timeline-dot"/><div className="timeline-content"><div className="record-top"><span className="eyebrow">{a.type}</span><ExampleLabel example={a.example}/></div><h3>{a.title}</h3><p>{a.description}</p><div className="record-bottom"><span><CalendarDays size={14}/>{a.date}</span></div></div></article>)}{activities.length===0 && <p className="empty-state">No updates added yet. Add one in <code>src/data/portfolio.ts</code>.</p>}</div></PageSection></InnerShell>}
+
+export default function ActivityPage() {
+  return (
+    <InnerShell
+      title="Activity"
+      eyebrow="BUILD LOG & GITHUB"
+      description="My public GitHub contributions over the past year."
+    >
+      <PageSection title="GitHub contributions" label="PUBLIC GITHUB ACTIVITY">
+        <GithubContributions />
+      </PageSection>
+    </InnerShell>
+  );
+}

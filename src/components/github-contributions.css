@@ -1,66 +1,85 @@
-/* GitHub calendar, driven by the same data-theme attribute as the portfolio. */
+/* Reference-style GitHub calendar. Styling only: data fetching stays unchanged. */
 .gh-contributions {
-  --gh-surface: var(--surface, #fff);
+  --gh-surface: var(--surface, var(--panel, #ffffff));
   --gh-text: var(--text, #1a1a1a);
-  --gh-muted: var(--muted, #666);
-  --gh-border: var(--line, #ccc);
-  --gh-zero: #e1e1e1;
-  --gh-cell-border: #bcbcbc;
-  --gh-cell-gap: clamp(1px, 0.2vw, 3px);
-  --gh-weekday-width: 29px;
-  color: var(--gh-text);
-  background: var(--gh-surface);
-  border: 1px solid var(--gh-border);
-  border-radius: 4px;
-  padding: clamp(10px, 2vw, 20px);
+  --gh-muted: var(--muted, #808080);
+  --gh-border: var(--line, #cccccc);
+  --gh-cell-gap: clamp(1px, .27vw, 3px);
+  --gh-zero: #e9e9e9;
+  --gh-level-1: #cccccc;
+  --gh-level-2: #aaaaaa;
+  --gh-level-3: #777777;
+  --gh-level-4: #292929;
+  --gh-outline: transparent;
   width: 100%;
   min-width: 0;
   box-sizing: border-box;
   overflow: hidden;
-  transition: color .3s ease, background-color .3s ease, border-color .3s ease;
+  padding: clamp(10px, 1.7vw, 18px);
+  border: 1px solid var(--gh-border);
+  border-radius: 4px;
+  color: var(--gh-text);
+  background: var(--gh-surface);
+  transition: color .25s ease, background-color .25s ease, border-color .25s ease;
 }
-/* Follow the app's explicit toggle, not the device's prefers-color-scheme. */
-:root[data-theme="dark"] .gh-contributions {
-  --gh-zero: #343434;
-  --gh-cell-border: #595959;
+/* Theme follows the portfolio's manual data-theme toggle. */
+:root[data-theme="dark"] .gh-contributions,
+[data-theme="dark"] .gh-contributions {
+  --gh-zero: #202020;
+  --gh-level-1: #414141;
+  --gh-level-2: #696969;
+  --gh-level-3: #a0a0a0;
+  --gh-level-4: #f0f0f0;
 }
-.gh-contributions__head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.gh-contributions__head h2 { font: inherit; font-weight: 700; margin: 0; }
-.gh-contributions__head a { color: inherit; text-decoration: underline; text-underline-offset: 3px; font-size: 12px; white-space: nowrap; }
-.gh-contributions__state { color: var(--gh-muted); font-size: 13px; padding: 20px 0; }
-.gh-contributions__calendar { width: 100%; min-width: 0; padding: 24px 0 12px; }
-.gh-contributions__chart { width: 100%; min-width: 0; }
-/* Month labels begin exactly where the first contribution column begins. */
-.gh-contributions__months { display: grid; grid-template-columns: repeat(var(--gh-weeks), minmax(0, 1fr)); column-gap: var(--gh-cell-gap); margin-left: calc(var(--gh-weekday-width) + var(--gh-cell-gap)); width: calc(100% - var(--gh-weekday-width) - var(--gh-cell-gap)); height: 19px; font-size: 9px; color: var(--gh-muted); align-items: start; }
-.gh-contributions__months span { white-space: nowrap; }
-/* Both weekdays and the squares share the SAME seven rows. */
-.gh-contributions__grid { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, minmax(0, 1fr)); grid-template-columns: var(--gh-weekday-width) repeat(var(--gh-weeks), minmax(0, 1fr)); gap: var(--gh-cell-gap); width: 100%; min-width: 0; }
-.gh-contributions__weekdays { grid-column: 1; grid-row: 1 / span 7; display: grid; grid-template-rows: subgrid; font-size: 9px; color: var(--gh-muted); }
-.gh-contributions__weekdays span { display: flex; align-items: center; min-height: 0; line-height: 1; }
-.gh-contributions__day { display: block; width: 100%; aspect-ratio: 1; min-width: 0; border-radius: 1px; border: 1px solid var(--gh-cell-border); box-sizing: border-box; opacity: 1; transition: background-color .3s ease, border-color .3s ease; }
-/* Calendar padding days are hidden; real zero-count days are fully visible. */
-.gh-contributions__empty { visibility: hidden; }
-.gh-contributions__level-0 { background: var(--gh-zero); }
-.gh-contributions__level-1 { background: #c2c2c2; }
-.gh-contributions__level-2 { background: #929292; }
-.gh-contributions__level-3 { background: #616161; }
-.gh-contributions__level-4 { background: #292929; }
-:root[data-theme="dark"] .gh-contributions__level-1 { background: #646464; }
-:root[data-theme="dark"] .gh-contributions__level-2 { background: #898989; }
-:root[data-theme="dark"] .gh-contributions__level-3 { background: #b7b7b7; }
-:root[data-theme="dark"] .gh-contributions__level-4 { background: #e6e6e6; }
-.gh-contributions__foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; padding-top: 6px; color: var(--gh-muted); font-size: 10px; }
-.gh-contributions__total { color: var(--gh-text); font-size: 10px; letter-spacing: .06em; }
-.gh-contributions__legend { display: inline-flex; align-items: center; gap: 3px; }
-.gh-contributions__legend i { display: inline-block; width: 9px; height: 9px; border-radius: 1px; border: 1px solid var(--gh-cell-border); opacity: 1; }
-.gh-contributions--compact { padding: 12px; }
-@media (max-width: 600px) {
-   .gh-contributions { --gh-weekday-width: 19px; }
-  .gh-contributions__weekdays { font-size: 8px; }
-  .gh-contributions__months { font-size: 7px; }
-  .gh-contributions__head h2 { font-size: 13px; }
-  .gh-contributions__head a { font-size: 10px; }
+.gh-contributions__head {display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.gh-contributions__head h2 {font:inherit;font-weight:700;margin:0;}
+.gh-contributions__head a {color:inherit;text-decoration:underline;text-underline-offset:3px;font-size:12px;white-space:nowrap;}
+.gh-contributions__state {color:var(--gh-muted);font-size:13px;padding:20px 0;}
+.gh-contributions__calendar {width:100%;min-width:0;padding:16px 0 6px;}
+.gh-contributions__chart {width:100%;min-width:0;}
+/* Reference screenshots show only the squares, with no month or weekday text. */
+.gh-contributions__months,
+.gh-contributions__weekdays {display:none !important;}
+.gh-contributions__grid {
+  display:grid;
+  grid-auto-flow:column;
+  grid-template-rows:repeat(7,minmax(0,1fr));
+  grid-template-columns:repeat(var(--gh-weeks),minmax(0,1fr));
+  gap:var(--gh-cell-gap);
+  width:100%;
+  min-width:0;
 }
-@media (prefers-reduced-motion: reduce) {
-  .gh-contributions, .gh-contributions__day { transition: none; }
+.gh-contributions__day {
+  display:block;
+  width:100%;
+  min-width:0;
+  aspect-ratio:1 / 1;
+  box-sizing:border-box;
+  border:1px solid var(--gh-outline);
+  border-radius:2px;
+  opacity:1;
+  background:var(--gh-zero);
+  transition:background-color .25s ease, transform .12s ease;
 }
+/* Empty padding days are not genuine zero-contribution days. */
+.gh-contributions__empty {visibility:hidden;}
+.gh-contributions__level-0 {background:var(--gh-zero);}
+.gh-contributions__level-1 {background:var(--gh-level-1);}
+.gh-contributions__level-2 {background:var(--gh-level-2);}
+.gh-contributions__level-3 {background:var(--gh-level-3);}
+.gh-contributions__level-4 {background:var(--gh-level-4);}
+.gh-contributions__day:not(.gh-contributions__empty):hover {outline:1px solid var(--gh-muted);outline-offset:0;transform:scale(1.08);position:relative;z-index:1;}
+.gh-contributions__foot {display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding-top:4px;color:var(--gh-muted);font-size:10px;}
+.gh-contributions__total {color:var(--gh-text);font-size:10px;letter-spacing:.04em;}
+.gh-contributions__legend {display:inline-flex;align-items:center;gap:3px;white-space:nowrap;}
+.gh-contributions__legend i {display:inline-block;width:9px;height:9px;border-radius:1px;border:0;flex:0 0 9px;}
+.gh-contributions--compact {padding:12px;}
+@media(max-width:600px){
+  .gh-contributions {--gh-cell-gap:1px;padding:10px;}
+  .gh-contributions__head h2 {font-size:13px;}
+  .gh-contributions__head a {font-size:10px;}
+  .gh-contributions__total {font-size:9px;}
+  .gh-contributions__legend {font-size:9px;}
+  .gh-contributions__legend i {width:8px;height:8px;flex-basis:8px;}
+}
+@media(prefers-reduced-motion:reduce){.gh-contributions,.gh-contributions__day {transition:none;}}

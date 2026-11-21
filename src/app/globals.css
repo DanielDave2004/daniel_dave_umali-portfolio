@@ -79,6 +79,26 @@
 }
 
 
+/* Page-wide theme feedback, following the circular light/dark reveal.
+   Applies to Overview, Projects, Certifications, Competitions, and every other route. */
+@media (prefers-reduced-motion: no-preference) {
+  :root[data-page-theme-animation="true"] .site-shell .topbar,
+  :root[data-page-theme-animation="true"] .site-shell .left-sidebar,
+  :root[data-page-theme-animation="true"] .site-shell .right-sidebar,
+  :root[data-page-theme-animation="true"] .site-shell .main-column > .panel,
+  :root[data-page-theme-animation="true"] .site-shell .main-column > section,
+  :root[data-page-theme-animation="true"] .site-shell .main-column > .feed-intro {
+    animation: portfolio-theme-settle 420ms cubic-bezier(.2,.7,.2,1) both;
+  }
+  :root[data-page-theme-animation="true"] .site-shell .main-column > :nth-child(2) { animation-delay: 45ms; }
+  :root[data-page-theme-animation="true"] .site-shell .main-column > :nth-child(3) { animation-delay: 85ms; }
+  :root[data-page-theme-animation="true"] .site-shell .main-column > :nth-child(n+4) { animation-delay: 120ms; }
+  @keyframes portfolio-theme-settle {
+    from { opacity: .78; transform: translateY(7px); filter: brightness(.96); }
+    to { opacity: 1; transform: translateY(0); filter: brightness(1); }
+  }
+}
+
 /* Content-sized tech badges, grouped by skill category */
 .tech-grid { display:flex !important; flex-wrap:wrap; align-items:flex-start; justify-content:flex-start; gap:7px !important; }
 .tech-item { display:inline-flex !important; flex:0 0 auto; width:max-content; max-width:100%; white-space:nowrap; padding:7px 10px !important; gap:7px; }
@@ -230,54 +250,261 @@
 @media(max-width:480px) { .rocket-game-panel {padding:10px;} .rocket-game-scoreboard>div{padding:11px 8px;} .rocket-game-controls button{flex:1;padding:10px;} .rocket-game-controls .rocket-game-secondary span{display:none;} .rocket-game-indicator{font-size:9px;} }
 
 
+/* Activity page redesign + improved tech stack cards */
+.activity-overview-grid,.activity-content-grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(250px,.75fr);gap:15px;margin-bottom:15px}.activity-hero-panel,.activity-summary-panel,.activity-github-panel,.activity-note-panel{height:100%}.activity-hero-panel{display:flex;flex-direction:column;gap:20px}.activity-hero-copy h2{margin:8px 0 10px;font-size:28px;letter-spacing:-1px;line-height:1.15}.activity-hero-copy p{margin:0;max-width:720px;color:var(--sub);font-size:12.5px;line-height:1.9}.activity-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.activity-metric{border:1px solid var(--line);background:linear-gradient(180deg,var(--surface),var(--surface2));padding:14px;border-radius:6px;display:flex;flex-direction:column;gap:6px}.activity-metric svg{color:var(--muted)}.activity-metric strong{font-size:14px;letter-spacing:-.2px;overflow-wrap:anywhere}.activity-metric span{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);line-height:1.5}.activity-summary-head{display:flex;align-items:center;gap:9px;margin-bottom:16px}.activity-summary-head strong{font-size:13px}.activity-summary-list{margin:0;padding-left:18px;display:grid;gap:10px;color:var(--sub);font-size:12px;line-height:1.8}.activity-summary-link{display:inline-flex;align-items:center;gap:7px;margin-top:18px;font-size:11px;font-weight:700}.activity-section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}.activity-section-head h2{margin:6px 0 0;font-size:21px;letter-spacing:-.7px}.activity-note-panel{display:grid;gap:12px;align-content:start}.activity-note-card{border:1px solid var(--line);padding:14px;border-radius:5px;background:var(--surface2)}.activity-note-card strong{display:block;font-size:12px;margin-bottom:8px}.activity-note-card p{margin:0;color:var(--sub);font-size:11.5px;line-height:1.8}.activity-feed-cards{display:grid;gap:12px}.activity-feed-card{border:1px solid var(--line);border-radius:6px;padding:16px 18px;background:linear-gradient(180deg,var(--surface),var(--surface2))}.activity-feed-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.activity-feed-card h3{font-size:16px;letter-spacing:-.4px;margin:8px 0 0}.activity-feed-card p{font-size:11.7px;line-height:1.9;color:var(--sub);margin:13px 0 0}.activity-empty-state{border:1px dashed var(--line);border-radius:6px;padding:24px;background:var(--surface2)}.activity-empty-state strong{display:block;font-size:14px;margin-bottom:7px}.activity-empty-state p{margin:0;color:var(--sub);line-height:1.8;font-size:12px}.skill-group-title svg,.inner-skill-card .skill-group-title svg{color:var(--sub)}.tech-grid{display:flex!important;flex-wrap:wrap;align-items:flex-start;justify-content:flex-start;gap:8px!important}.tech-item{display:inline-flex!important;align-items:center;justify-content:flex-start;flex:0 0 auto;width:auto;max-width:100%;padding:8px 12px!important;gap:8px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-size:10.5px;font-weight:650;line-height:1.25;white-space:nowrap}.tech-item__label{display:inline-flex;align-items:center;justify-content:center;min-height:20px;overflow-wrap:anywhere}.tech-item--text-only{justify-content:center;text-align:center;padding-inline:14px!important}.tech-icon-wrap{width:22px;height:22px;border-radius:999px;display:grid;place-items:center;background:var(--surface2);border:1px solid var(--line);flex:none}.tech-icon-wrap--dark{background:#101010;border-color:#2a2a2a}.tech-logo{display:block;width:14px;height:14px;object-fit:contain}.tech-logo--invert{filter:invert(1)}.tech-logo-fallback{display:grid;place-items:center;width:18px;height:18px;border-radius:999px;background:var(--surface2);font-size:9px;font-weight:800;color:var(--sub)}
+@media(max-width:1100px){.activity-overview-grid,.activity-content-grid{grid-template-columns:1fr}.activity-summary-panel,.activity-note-panel{order:2}.activity-github-panel{order:1}}
+@media(max-width:760px){.activity-hero-copy h2{font-size:22px}.activity-metrics{grid-template-columns:1fr}.activity-feed-top{flex-direction:column}.tech-grid{gap:7px!important}.tech-item{font-size:10px;padding:7px 11px!important}}
 
-/* DD vector mark: no square, no raster and no forced background. */
-.brand-mark.brand-mark--logo {
-  width: 46px;
-  height: 36px;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  border-radius: 0;
-  display: flex;
-  flex: 0 0 auto;
+
+/* Tech Stack: compact rectangular badges instead of circles/pills. */
+.tech-item {
+  border-radius: 3px !important;
+}
+.tech-icon-wrap,
+.tech-icon-wrap--dark {
+  border-radius: 3px !important;
+}
+.tech-logo-fallback {
+  border-radius: 3px !important;
+}
+
+
+/* Consistent monochrome SVG marks. Light mode: black; dark mode: white.
+   Override the original brand-color filters and any icon-specific inversion. */
+.tech-item .tech-icon-wrap,
+.quick-stack .stack-mark {
+  background: transparent !important;
+  border-color: var(--line) !important;
+}
+.tech-item .tech-logo.tech-stack-svg,
+.quick-stack .tech-logo.tech-stack-svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  filter: grayscale(1) brightness(0) !important;
+  opacity: 1;
+  transition: filter 260ms ease, opacity 260ms ease;
+}
+:root[data-theme="dark"] .tech-item .tech-logo.tech-stack-svg,
+:root[data-theme="dark"] .quick-stack .tech-logo.tech-stack-svg {
+  filter: grayscale(1) brightness(0) invert(1) !important;
+}
+.tech-item .tech-icon-wrap {
+  border-radius: 3px !important;
+  width: 24px;
+  height: 24px;
+}
+.tech-item {
+  border-radius: 3px !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .tech-item .tech-logo.tech-stack-svg,
+  .quick-stack .tech-logo.tech-stack-svg { transition: none; }
+}
+
+/* Compact section banners across Projects, About, Activity and other inner pages. */
+.inner-page-heading .inner-heading-cover {
+  height: 48px;
+  min-height: 48px;
+  padding: 12px 20px;
   align-items: center;
-  justify-content: center;
-  color: var(--text);
-  transition: color 320ms ease;
-}
-.brand-logo-svg { display: block; width: 100%; height: 100%; overflow: visible; }
-
-/* Smooth palette transitions with no shifting, scaling or bouncing of page sections. */
-@media (prefers-reduced-motion: no-preference) {
-  html, body, .site-shell, .topbar, .panel,
-  .left-sidebar, .right-sidebar, .brand-mark--logo,
-  .side-nav a, .icon-button {
-    transition-property: background-color, border-color, color, box-shadow;
-    transition-duration: 340ms;
-    transition-timing-function: ease;
-  }
-  .theme-button svg, .inner-theme svg { transition: opacity 180ms ease; }
 }
 
-/* On small screens the drawer must stay off-canvas until Menu is pressed.
-   Never include the drawer in page theme keyframe animations. */
 @media (max-width: 760px) {
-  .brand-mark.brand-mark--logo { width: 40px; height: 30px; }
-  .left-sidebar:not(.left-sidebar--open) {
-    transform: translate3d(-110%,0,0);
-    visibility: hidden;
-    pointer-events: none;
+  .inner-page-heading .inner-heading-cover {
+    height: 44px;
+    min-height: 44px;
+    padding: 10px 14px;
   }
-  .left-sidebar.left-sidebar--open {
-    transform: translate3d(0,0,0);
-    visibility: visible;
-    pointer-events: auto;
+}
+
+/* Distinct sidebar surface and active-page highlight.
+   Append to the END of src/app/globals.css. */
+:root {
+  --sidebar-bg: #e8e8e8;
+  --sidebar-border: #d6d6d6;
+  --sidebar-hover: #dadada;
+  --sidebar-active-bg: #1a1a1a;
+  --sidebar-active-text: #ffffff;
+}
+:root[data-theme="dark"] {
+  --sidebar-bg: #202020;
+  --sidebar-border: #393939;
+  --sidebar-hover: #2d2d2d;
+  --sidebar-active-bg: #eeeeee;
+  --sidebar-active-text: #121212;
+}
+
+.site-shell .left-sidebar {
+  background: var(--sidebar-bg);
+  border: 1px solid var(--sidebar-border);
+  border-radius: 5px;
+  padding: 18px 10px;
+}
+.site-shell .left-sidebar .side-divider {
+  background: var(--sidebar-border);
+}
+.site-shell .left-sidebar .side-nav a:hover,
+.site-shell .left-sidebar .side-nav button:hover {
+  background: var(--sidebar-hover);
+  color: var(--text);
+}
+/* The .selected class is already set by Next.js navigation on each page. */
+.site-shell .left-sidebar .side-nav a.selected,
+.site-shell .left-sidebar .side-nav button.selected,
+.site-shell .left-sidebar .side-nav a.selected:hover,
+.site-shell .left-sidebar .side-nav button.selected:hover {
+  background: var(--sidebar-active-bg);
+  color: var(--sidebar-active-text);
+  font-weight: 700;
+}
+.site-shell .left-sidebar .side-nav a.selected svg,
+.site-shell .left-sidebar .side-nav button.selected svg {
+  color: var(--sidebar-active-text);
+}
+/* Disable the old dark stripe and tiny dot: the complete row is highlighted. */
+.site-shell .left-sidebar .side-nav .selected::before,
+.site-shell .left-sidebar .side-nav .selected .active-indicator {
+  display: none;
+}
+@media (max-width: 760px) {
+  .site-shell .left-sidebar {
+    border-radius: 0;
+    border-left: 0;
+    border-top: 0;
+    border-bottom: 0;
+    max-height: none;
   }
-  .left-sidebar {
-    transition: transform 220ms ease, visibility 220ms ease,
-                background-color 340ms ease, border-color 340ms ease;
+}
+
+/* Keep overlay dialogs in the viewport, independent of animated page layers. */
+.portfolio-modal-shade {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  padding: clamp(8px, 2vh, 20px);
+  isolation: isolate;
+}
+.portfolio-modal-window {
+  width: min(1040px, 100%);
+  height: min(900px, 100%);
+  max-height: 100%;
+  min-height: 0;
+}
+.portfolio-modal-resume .portfolio-modal-content { overflow: hidden; }
+.portfolio-modal-resume .portfolio-pdf-frame { min-height: 0; height: auto; flex: 1 1 auto; }
+@media (max-width: 650px) {
+  .portfolio-modal-shade { padding: 8px; }
+  .portfolio-modal-window { height: 100%; }
+  .portfolio-modal-resume .portfolio-modal-actions { flex: 0 0 auto; }
+}
+
+
+/* Sidebar trim, right-column card alignment, and visible system cursor inside modals. */
+.left-sidebar {
+  scrollbar-gutter: auto;
+  padding-right: 0;
+}
+.left-sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+.left-sidebar::-webkit-scrollbar-thumb {
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+.site-shell .layout > .left-sidebar {
+  padding-right: 6px !important;
+}
+.right-sidebar {
+  align-self: start;
+  width: 100%;
+  display: grid;
+  gap: 15px;
+  align-content: start;
+}
+.right-sidebar > .panel,
+.right-sidebar > .right-panel,
+.right-sidebar > .sidebar-note {
+  width: 100%;
+  margin: 0;
+}
+.right-panel {
+  min-width: 0;
+}
+
+/* Keep the right-hand cards level with the top of the main profile card.
+   The old sticky top:90px could leave a large blank strip above them. */
+@media (min-width: 1191px) {
+  .site-shell .layout > .right-sidebar {
+    position: relative;
+    top: 0;
+    align-self: start;
+    margin-top: 0;
+    padding-top: 0;
   }
-  /* No transition overlays on mobile: native color changes are more stable. */
-  ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0ms !important; }
+}
+/* Don't let the desktop grid override the compact two-column layout. */
+@media (max-width: 1190px) {
+  .site-shell .layout > .right-sidebar { display: none; }
+}
+
+/* The achievement overlay must be above sticky sidebars and dashboard cards. */
+.achievement-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+  z-index: 2147483000;
+  padding: clamp(8px, 2vh, 20px);
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.achievement-modal {
+  max-width: 100%;
+  max-height: calc(100dvh - 2 * clamp(8px, 2vh, 20px));
+  min-height: 0;
+}
+.achievement-modal-image {
+  min-height: 0;
+  overflow: auto;
+}
+.achievement-modal-image img {
+  max-height: calc(100dvh - 110px);
+  object-fit: contain;
+}
+
+/* Show the portfolio's animated circle over every dialog, including certificates. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  html.has-circle-cursor.modal-open .circle-cursor-layer {
+    display: block !important;
+    z-index: 2147483600;
+    isolation: auto;
+  }
+  html.has-circle-cursor.modal-open,
+  html.has-circle-cursor.modal-open body,
+  html.has-circle-cursor.modal-open .portfolio-modal-shade,
+  html.has-circle-cursor.modal-open .portfolio-modal-shade *,
+  html.has-circle-cursor.modal-open .achievement-modal-backdrop,
+  html.has-circle-cursor.modal-open .achievement-modal-backdrop * {
+    cursor: none !important;
+  }
+  /* PDF iframe viewers manage their own native pointer. */
+  html.has-circle-cursor.modal-open .portfolio-pdf-frame {
+    cursor: auto !important;
+  }
+  /* White + difference stays visible over black backdrops and white cards. */
+  html.has-circle-cursor.modal-open .circle-cursor-ring {
+    border-color: #fff;
+    box-shadow: none;
+    mix-blend-mode: difference;
+  }
+  html.has-circle-cursor.modal-open .circle-cursor-dot {
+    background: #fff;
+    box-shadow: none;
+    mix-blend-mode: difference;
+  }
 }

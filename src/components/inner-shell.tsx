@@ -1,21 +1,19 @@
 "use client";
 
-import { media } from "@/data/media";
-import { BrandLogo } from "@/components/brand-logo";
-
 import { useState, type ReactNode } from "react";
 import { usePortfolioTheme } from "@/components/use-portfolio-theme";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Activity, ArrowUpRight, Award, BriefcaseBusiness, Code2, FileText, Github, GraduationCap, Home, Linkedin, Mail, MapPin, Menu, Moon, Gamepad2, Sun, Trophy, UserRound, X } from "lucide-react";
+import { Activity, ArrowUpRight, Award, BriefcaseBusiness, Layers3, FileText, Github, GraduationCap, Home, Linkedin, Mail, MapPin, Menu, Moon, Gamepad2, Sun, Trophy, UserRound, X } from "lucide-react";
 import { portfolio } from "@/data/portfolio";
+import { BrandLogo } from "@/components/brand-logo";
 
 const navigation = [
   { href: "/", title: "Overview", icon: Home },
   { href: "/about", title: "About", icon: UserRound },
   { href: "/projects", title: "Projects", icon: BriefcaseBusiness },
   { href: "/achievements", title: "Achievements", icon: Award },
-  { href: "/skills", title: "Tech stack", icon: Code2 },
+  { href: "/skills", title: "Tech stack", icon: Layers3 },
   { href: "/education", title: "Education", icon: GraduationCap },
   { href: "/activity", title: "Activity", icon: Activity },
   { href: "/contact", title: "Contact", icon: Mail },
@@ -29,7 +27,7 @@ export function InnerShell({ children, title, description, eyebrow = "PORTFOLIO"
   return <div className="site-shell">
     <header className="topbar"><div className="topbar-inner inner-topbar">
       <button className="icon-button mobile-menu" onClick={() => setMenuOpen(true)} aria-label="Open navigation"><Menu size={20}/></button>
-      <Link className="brand" href="/"><span className="brand-mark brand-mark--logo"><BrandLogo className="brand-logo-svg" /></span><span className="brand-name">{portfolio.name}<small>DEVELOPER SPACE</small></span></Link>
+      <Link className="brand" href="/"><span className="brand-mark" style={{width:46,height:36,padding:0,border:0,background:"transparent",color:"var(--text)",borderRadius:0,flexShrink:0}}><BrandLogo style={{width:"100%",height:"100%",display:"block"}} /></span><span className="brand-name">{portfolio.name}<small>DEVELOPER SPACE</small></span></Link>
       <nav className="inner-quick-links" aria-label="Quick links"><Link href="/projects">Projects</Link><Link href="/achievements">Achievements</Link></nav>
       <button className="icon-button inner-theme" onClick={toggleTheme} aria-label="Toggle dark mode">{theme === "light" ? <Moon size={19}/> : <Sun size={19}/>}</button>
     </div></header>
@@ -37,7 +35,7 @@ export function InnerShell({ children, title, description, eyebrow = "PORTFOLIO"
     <div className="layout">
       <aside className={`left-sidebar ${menuOpen ? "left-sidebar--open" : ""}`}>
         <div className="mobile-drawer-head"><strong>Navigation</strong><button className="icon-button" onClick={() => setMenuOpen(false)} aria-label="Close navigation"><X size={19}/></button></div>
-        <Link href="/" className="side-intro"><span className="avatar avatar--medium"><img className="portfolio-avatar-img" src={media.avatar} alt="" /></span><div><strong>{portfolio.name}</strong><span>Developer profile</span></div></Link>
+        <Link href="/" className="side-intro"><div><strong>{portfolio.name}</strong><span>Developer profile</span></div></Link>
         <span className="side-label">MENU</span>
         <nav className="side-nav" aria-label="Main navigation">{navigation.map(({href,title,icon: Icon}) => <Link key={href} href={href} onClick={() => setMenuOpen(false)} className={href === "/" ? (path === href ? "selected" : "") : (path === href || path.startsWith(`${href}/`) ? "selected" : "")}><Icon size={18}/><span>{title}</span></Link>)}</nav>
         <div className="side-divider"/><span className="side-label">CONNECT</span>

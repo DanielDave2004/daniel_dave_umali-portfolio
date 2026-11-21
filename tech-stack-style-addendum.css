@@ -1,0 +1,23 @@
+/* Tech stack logo clarity patch — append after prior tech stack rules. */
+.tech-item .tech-icon-wrap,
+.quick-stack .stack-mark {
+  background: transparent !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 3px !important;
+}
+.tech-item .tech-logo.tech-stack-svg,
+.quick-stack .tech-logo.tech-stack-svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  filter: brightness(0) !important;
+  opacity: 1 !important;
+}
+:root[data-theme="dark"] .tech-item .tech-logo.tech-stack-svg,
+:root[data-theme="dark"] .quick-stack .tech-logo.tech-stack-svg,
+[data-theme="dark"] .tech-item .tech-logo.tech-stack-svg,
+[data-theme="dark"] .quick-stack .tech-logo.tech-stack-svg {
+  filter: brightness(0) invert(1) !important;
+}
+.tech-item--text-only { justify-content: center !important; text-align: center !important; }

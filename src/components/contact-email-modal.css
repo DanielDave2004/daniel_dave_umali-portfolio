@@ -1,0 +1,23 @@
+/* Contact email modal */
+.portfolio-modal-email { width: min(640px, 100%); height: auto; max-height: min(92dvh, 820px); }
+.contact-email-modal-content { overflow-y: auto; min-height: 0; padding: clamp(17px,3vw,26px); }
+.contact-email-form { display: grid; gap: 16px; }
+.contact-email-intro { margin: 0 0 2px; color: var(--sub); font-size: 12px; line-height: 1.6; }
+.contact-email-row { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+.contact-email-form label { display: flex; flex-direction: column; gap: 7px; font-size: 12px; font-weight: 650; color: var(--text); }
+.contact-email-form input, .contact-email-form textarea { width: 100%; border: 1px solid var(--line); background: var(--bg); color: var(--text); padding: 12px; font: inherit; font-weight: 400; border-radius: 2px; outline: none; }
+.contact-email-form textarea { resize: vertical; min-height: 128px; }
+.contact-email-form input:focus, .contact-email-form textarea:focus { border-color: var(--sub); outline: 1px solid var(--sub); }
+.contact-email-form input::placeholder, .contact-email-form textarea::placeholder { color: var(--muted); }
+.contact-email-honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.contact-email-footer { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; border-top: 1px solid var(--line); padding-top: 14px; }
+.contact-email-footer span { font-size: 11px; color: var(--sub); max-width: 280px; line-height: 1.5; }
+.contact-email-footer button:disabled { opacity: .65; cursor: wait; }
+.contact-email-error { border: 1px solid #a14b4b; padding: 10px 12px; color: var(--text); font-size: 12px; margin: 0; }
+.contact-email-success { display: grid; justify-items: start; gap: 12px; padding: 16px 0; }
+.contact-email-success h3 { margin: 0; font-size: 20px; }
+.contact-email-success p { margin: 0 0 7px; color: var(--sub); line-height: 1.6; }
+.contact-email-cta { margin-top: 17px; }
+.connect-email-button { width: 100%; border: 0; background: none; color: var(--text); display: flex; gap: 12px; padding: 12px 0; align-items: center; text-align: left; font: inherit; font-size: 12px; cursor: pointer; }
+.connect-email-button:hover { color: var(--sub); }
+@media (max-width: 600px) { .contact-email-row { grid-template-columns: 1fr; } .contact-email-modal-content { padding: 17px; } }

@@ -9,7 +9,8 @@ export function usePortfolioTheme() {
   const [theme, setTheme] = useState<Theme>("light");
 
   useEffect(() => {
-    const saved = window.localStorage.getItem("portfolio-theme");
+    let saved: string | null = null;
+    try { saved = window.localStorage.getItem("portfolio-theme"); } catch { /* Storage may be disabled. */ }
     const initial: Theme = saved === "dark" ? "dark" : "light";
     document.documentElement.dataset.theme = initial;
     setTheme(initial);
@@ -21,7 +22,7 @@ export function usePortfolioTheme() {
 
     const applyTheme = () => {
       root.dataset.theme = next;
-      window.localStorage.setItem("portfolio-theme", next);
+      try { window.localStorage.setItem("portfolio-theme", next); } catch { /* Keep the theme active without storage. */ }
       setTheme(next);
     };
 

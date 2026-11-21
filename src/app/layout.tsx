@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { portfolio } from "@/data/portfolio";
 import "./globals.css";
+import "./sidebar-theme.css";
 import { CircleCursor } from "@/components/circle-cursor";
 
 export const metadata: Metadata = {

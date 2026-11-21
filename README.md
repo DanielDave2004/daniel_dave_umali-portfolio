@@ -1,9 +1,8 @@
-# DD SVG favicon for Next.js App Router
+Sidebar color update
 
-Copy `src/app/icon.svg` into the existing `my-portfolio/src/app/` directory.
+Replace src/app/sidebar-theme.css with the included file.
 
-If `src/app/favicon.ico` exists, remove it to avoid using the old icon.
-
-The SVG uses the DD logo from your latest header and changes color based on the browser/device light or dark color scheme. It does not follow the website's manual theme toggle.
-
-Run `npm run dev`, then visit your site and hard refresh if the old favicon is cached. Run `npm run build` before deploying.
+Light mode: near-white (#FAFAFA) sidebar, dark text, soft gray active-page highlight.
+Dark mode: header-matching charcoal (#1A1A1A), light text, gray active-page highlight.
+Keeps full-height, edge-to-edge sidebar, far-left-aligned labels and existing layout.
+No other source files are changed.

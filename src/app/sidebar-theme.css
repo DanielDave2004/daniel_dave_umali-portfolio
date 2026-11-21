@@ -1,0 +1,225 @@
+/* Portfolio sidebar: white header-inspired background, edge-to-edge and flat. */
+/* Uses the same data-theme attribute as the portfolio theme toggle. */
+:root,
+:root[data-theme="light"] {
+  --dashboard-side-bg: #fafafa;
+  --dashboard-side-border: #e6e6e6;
+  --dashboard-side-text: #252525;
+  --dashboard-side-soft: #606060;
+  --dashboard-side-hover: #ededed;
+  --dashboard-side-active: #e6e6e6;
+  --dashboard-side-active-ink: #191919;
+  --dashboard-side-scrollbar: #c4c4c4;
+}
+:root[data-theme="dark"] {
+  --dashboard-side-bg: #1a1a1a;
+  --dashboard-side-border: #333333;
+  --dashboard-side-text: #f1f1f1;
+  --dashboard-side-soft: #b5b5b5;
+  --dashboard-side-hover: #292929;
+  --dashboard-side-active: #393939;
+  --dashboard-side-active-ink: #ffffff;
+  --dashboard-side-scrollbar: #737373;
+}
+
+/* Match the sidebar boundary-to-center gap to the center-to-right grid gap.
+   Desktop: 24px on both sides of the center; medium: 18px.
+   Extend the sidebar color to the LEFT, TOP and BOTTOM edges of the page.
+   The header stays above it and the center column keeps its own background. */
+.site-shell::before {
+  content: "";
+  position: fixed;
+  top: 66px;
+  bottom: 0;
+  left: 0;
+  width: calc((100vw - min(100vw, 1512px)) / 2 + 270px);
+  background: var(--dashboard-side-bg);
+  border-right: 1px solid var(--dashboard-side-border);
+  pointer-events: none;
+  z-index: 0;
+}
+.site-shell .layout { position: relative; }
+.site-shell .layout > * { position: relative; z-index: 1; }
+.site-shell .layout > .left-sidebar { position: sticky; }
+@media (max-width: 1190px) and (min-width: 761px) {
+  .site-shell::before { width: calc((100vw - min(100vw, 1512px)) / 2 + 232px); }
+}
+/* Color the entire sidebar area rather than each section. */
+.site-shell .layout > .left-sidebar {
+  background: transparent !important;
+  color: var(--dashboard-side-text);
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 18px 12px 20px !important;
+  min-height: calc(100dvh - 90px);
+  max-height: calc(100dvh - 90px);
+  align-self: start;
+  scrollbar-color: var(--dashboard-side-scrollbar) transparent;
+}
+.site-shell .left-sidebar .side-intro,
+.site-shell .left-sidebar .side-intro strong {
+  color: var(--dashboard-side-text) !important;
+}
+.site-shell .left-sidebar .side-intro > div > span,
+.site-shell .left-sidebar .side-label,
+.site-shell .left-sidebar .side-footer,
+.site-shell .left-sidebar .side-footer p {
+  color: var(--dashboard-side-soft) !important;
+}
+.site-shell .left-sidebar .side-label {
+  padding-left: 10px;
+  letter-spacing: 1px;
+}
+.site-shell .left-sidebar .side-divider {
+  background: var(--dashboard-side-border) !important;
+}
+.site-shell .left-sidebar .side-nav a,
+.site-shell .left-sidebar .side-nav button {
+  border: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  color: var(--dashboard-side-text) !important;
+  border-radius: 5px !important;
+  padding: 11px 12px !important;
+  gap: 13px;
+}
+.site-shell .left-sidebar .side-nav a:hover:not(.selected),
+.site-shell .left-sidebar .side-nav button:hover:not(.selected) {
+  background: var(--dashboard-side-hover) !important;
+}
+/* A single filled highlight like the dashboard reference, no bento panels. */
+.site-shell .left-sidebar .side-nav a.selected,
+.site-shell .left-sidebar .side-nav button.selected,
+.site-shell .left-sidebar .side-nav a.selected:hover,
+.site-shell .left-sidebar .side-nav button.selected:hover {
+  background: var(--dashboard-side-active) !important;
+  color: var(--dashboard-side-active-ink) !important;
+  font-weight: 750 !important;
+}
+.site-shell .left-sidebar .side-nav .selected svg,
+.site-shell .left-sidebar .side-nav .selected span {
+  color: inherit !important;
+}
+.site-shell .left-sidebar .side-nav a.selected::before,
+.site-shell .left-sidebar .side-nav button.selected::before {
+  content: "" !important;
+  position: absolute;
+  display: block !important;
+  width: 3px;
+  height: 19px;
+  left: 0;
+  top: calc(50% - 9.5px);
+  border-radius: 2px;
+  background: var(--dashboard-side-active-ink) !important;
+}
+.site-shell .left-sidebar .side-nav .active-indicator { display: none !important; }
+.site-shell .left-sidebar .side-nav .side-ext { margin-left: auto; }
+
+@media (max-width: 760px) {
+  .site-shell::before { display: none; }
+  .site-shell .layout > .left-sidebar {
+    position: fixed;
+    background: var(--dashboard-side-bg) !important;
+    top: 0;
+    bottom: 0;
+    width: min(300px, 85vw);
+    height: 100dvh;
+    max-height: 100dvh;
+    min-height: 100dvh;
+    padding: 20px 15px !important;
+    border-radius: 0 !important;
+  }
+  .site-shell .left-sidebar .mobile-drawer-head { color: var(--dashboard-side-text); }
+  .site-shell .left-sidebar .mobile-drawer-head .icon-button { color: var(--dashboard-side-text); }
+}
+
+/* Keep the full-width background in sync with light/dark mode. */
+.site-shell::before,
+.site-shell .layout > .left-sidebar,
+.site-shell .left-sidebar .side-nav a,
+.site-shell .left-sidebar .side-nav button {
+  transition: background-color 220ms ease, color 220ms ease, border-color 220ms ease;
+}
+@media (max-width: 760px) {
+  .site-shell .layout > .left-sidebar { background: var(--dashboard-side-bg) !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-shell::before,
+  .site-shell .layout > .left-sidebar,
+  .site-shell .left-sidebar .side-nav a,
+  .site-shell .left-sidebar .side-nav button { transition: none; }
+}
+
+/* Align sidebar headings, icons and link titles closer to the far-left edge. */
+@media (min-width: 761px) {
+  .site-shell .layout > .left-sidebar {
+    padding-left: 6px !important;
+    padding-right: 12px !important;
+  }
+}
+.site-shell .left-sidebar .side-label {
+  padding-left: 2px !important;
+}
+.site-shell .left-sidebar .side-nav a,
+.site-shell .left-sidebar .side-nav button {
+  padding-left: 5px !important;
+  gap: 10px !important;
+}
+.site-shell .left-sidebar .side-intro {
+  padding-left: 5px !important;
+}
+@media (max-width: 760px) {
+  .site-shell .layout > .left-sidebar {
+    padding-left: 12px !important;
+  }
+}
+
+/* Keep the mobile drawer above the overlay and the sticky header. */
+@media (max-width: 760px) {
+  .site-shell .layout > .left-sidebar {
+    z-index: 60 !important;
+    transform: translateX(-110%);
+    box-shadow: 5px 0 24px rgb(0 0 0 / 18%);
+  }
+  .site-shell .layout > .left-sidebar.left-sidebar--open {
+    transform: translateX(0);
+  }
+  .site-shell .drawer-shade {
+    z-index: 50;
+  }
+}
+
+/* Keep navigation styles consistent on both overview and inner routes. */
+.site-shell .left-sidebar .side-nav a:focus-visible,
+.site-shell .left-sidebar .side-nav button:focus-visible {
+  outline: 2px solid var(--dashboard-side-text);
+  outline-offset: -2px;
+}
+.site-shell .header-links a,
+.site-shell .inner-quick-links a,
+.site-shell .profile-tabs a {
+  color: var(--sub);
+  font-weight: 600;
+}
+.site-shell .header-links a:hover,
+.site-shell .inner-quick-links a:hover,
+.site-shell .profile-tabs a:hover {
+  color: var(--text);
+}
+.site-shell .profile-tabs a {
+  display: inline-flex;
+  align-items: center;
+  padding: 17px 5px 16px;
+  border-bottom: 2px solid transparent;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.site-shell .profile-tabs a:hover { border-bottom-color: var(--text); }
+
+
+/* Trim the sidebar's right gutter so the scrollbar sits flush without extra blank space. */
+.site-shell .layout > .left-sidebar {
+  padding-right: 6px !important;
+  scrollbar-gutter: auto;
+}
