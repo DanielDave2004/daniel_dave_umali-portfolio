@@ -508,3 +508,18 @@
     mix-blend-mode: difference;
   }
 }
+
+
+/* Email form: keep the designed circle over modal actions, but use the native
+   text caret/I-beam over editable fields. CircleCursor already hides its
+   ring and dot while hovering an input or textarea. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  html.has-circle-cursor.modal-open .portfolio-modal-email input:not([type="checkbox"]):not([type="radio"]),
+  html.has-circle-cursor.modal-open .portfolio-modal-email textarea,
+  html.has-circle-cursor.modal-open .portfolio-modal-email [contenteditable="true"] {
+    cursor: text !important;
+  }
+  html.has-circle-cursor.modal-open .portfolio-modal-email button:disabled {
+    cursor: not-allowed !important;
+  }
+}
