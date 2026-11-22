@@ -89,7 +89,6 @@ export default function OverviewPage() {
     <div className="layout">
       <aside className={`left-sidebar ${mobileOpen ? "left-sidebar--open" : ""}`}>
         <div className="mobile-drawer-head"><strong>Navigation</strong><button className="icon-button" onClick={() => setMobileOpen(false)} aria-label="Close navigation"><X size={20}/></button></div>
-        <div className="side-intro"><div><strong>{portfolio.name}</strong><span>Developer profile</span></div></div>
         <span className="side-label">MENU</span>
         <nav className="side-nav" aria-label="Main navigation">{nav.map(({href,name,Icon}) => <Link key={href} href={href} className={href === "/" ? "selected" : ""}><Icon size={19} strokeWidth={1.9}/><span>{name}</span>{href === "/" && <span className="active-indicator"/>}</Link>)}</nav>
         <div className="side-divider"/>

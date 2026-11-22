@@ -523,3 +523,37 @@
     cursor: not-allowed !important;
   }
 }
+
+/* Modal cursor follows the selected theme, rather than using the white
+   difference-blend effect that made the light-mode cursor look pale. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  :root[data-theme="light"].has-circle-cursor.modal-open .circle-cursor-ring,
+  :root:not([data-theme="dark"]).has-circle-cursor.modal-open .circle-cursor-ring {
+    border-color: #171717;
+    box-shadow: 0 0 0 1px rgba(255,255,255,.6);
+    mix-blend-mode: normal;
+  }
+  :root[data-theme="light"].has-circle-cursor.modal-open .circle-cursor-dot,
+  :root:not([data-theme="dark"]).has-circle-cursor.modal-open .circle-cursor-dot {
+    background-color: #171717;
+    box-shadow: 0 0 0 1px rgba(255,255,255,.6);
+    mix-blend-mode: normal;
+  }
+  :root[data-theme="dark"].has-circle-cursor.modal-open .circle-cursor-ring {
+    border-color: #f2f2f2;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.65);
+    mix-blend-mode: normal;
+  }
+  :root[data-theme="dark"].has-circle-cursor.modal-open .circle-cursor-dot {
+    background-color: #f2f2f2;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.65);
+    mix-blend-mode: normal;
+  }
+  /* The active hover state uses the same theme-specific foreground. */
+  :root:not([data-theme="dark"]).has-circle-cursor.modal-open .circle-cursor-ring.cursor-active {
+    background-color: rgba(23,23,23,.08);
+  }
+  :root[data-theme="dark"].has-circle-cursor.modal-open .circle-cursor-ring.cursor-active {
+    background-color: rgba(242,242,242,.1);
+  }
+}

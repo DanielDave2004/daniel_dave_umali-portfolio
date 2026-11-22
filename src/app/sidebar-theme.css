@@ -223,3 +223,96 @@
   padding-right: 6px !important;
   scrollbar-gutter: auto;
 }
+
+/* Navigation positioned nearer to the sidebar's left edge, like the reference.
+   Keep the rounded active background inset evenly on both sides. */
+.site-shell .left-sidebar .side-nav {
+  align-items: stretch;
+  gap: 4px;
+}
+.site-shell .left-sidebar .side-nav > a,
+.site-shell .left-sidebar .side-nav > button {
+  width: calc(100% - 12px) !important;
+  margin-inline: 6px !important;
+  justify-content: flex-start;
+  text-align: left;
+  padding: 11px 6px !important;
+  gap: 10px !important;
+  border-radius: 7px !important;
+}
+.site-shell .left-sidebar .side-nav > a > span:not(.active-indicator),
+.site-shell .left-sidebar .side-nav > button > span:not(.active-indicator) {
+  text-align: left;
+}
+.site-shell .left-sidebar .side-nav > a svg,
+.site-shell .left-sidebar .side-nav > button svg {
+  flex-shrink: 0;
+}
+.site-shell .left-sidebar .side-nav a.selected::before,
+.site-shell .left-sidebar .side-nav button.selected::before {
+  left: 0 !important;
+  border-radius: 3px !important;
+}
+.site-shell .left-sidebar .side-nav .side-ext {
+  margin-left: auto !important;
+}
+.site-shell .left-sidebar .side-label {
+  text-align: left;
+  padding-left: 12px !important;
+  padding-right: 0;
+}
+.site-shell .left-sidebar .side-intro {
+  justify-content: flex-start;
+  padding-left: 12px !important;
+  padding-right: 8px !important;
+  text-align: left;
+}
+.site-shell .left-sidebar .side-footer {
+  text-align: left;
+  padding-left: 12px;
+  padding-right: 8px;
+}
+@media (max-width: 760px) {
+  .site-shell .left-sidebar .side-nav > a,
+  .site-shell .left-sidebar .side-nav > button {
+    width: calc(100% - 12px) !important;
+    margin-inline: 6px !important;
+  }
+}
+
+/* Bring the sidebar content toward the left edge without changing the grid
+   column, the right-hand scrollbar position, or the gap beside main content.
+   Extending the sticky sidebar leftward also keeps the rounded selection fully
+   visible instead of clipping it at the original grid boundary. */
+@media (min-width: 761px) {
+  .site-shell .layout > .left-sidebar {
+    margin-left: -22px;
+    width: calc(100% + 22px);
+    padding-left: 4px !important;
+    padding-right: 6px !important;
+  }
+  .site-shell .left-sidebar .side-nav > a,
+  .site-shell .left-sidebar .side-nav > button {
+    margin-inline: 6px !important;
+    width: calc(100% - 12px) !important;
+  }
+  .site-shell .left-sidebar .side-intro,
+  .site-shell .left-sidebar .side-label,
+  .site-shell .left-sidebar .side-footer {
+    padding-left: 12px !important;
+  }
+}
+
+/* Give the active navigation icon and label a little room after the dark line. */
+.site-shell .left-sidebar .side-nav > a.selected,
+.site-shell .left-sidebar .side-nav > button.selected {
+  padding-left: 12px !important;
+}
+
+/* No duplicate profile intro: let MENU start just below the site header. */
+@media (min-width: 761px) {
+  .site-shell .layout > .left-sidebar { padding-top: 12px !important; }
+}
+@media (max-width: 760px) {
+  .site-shell .layout > .left-sidebar { padding-top: 16px !important; }
+}

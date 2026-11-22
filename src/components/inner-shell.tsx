@@ -35,7 +35,6 @@ export function InnerShell({ children, title, description, eyebrow = "PORTFOLIO"
     <div className="layout">
       <aside className={`left-sidebar ${menuOpen ? "left-sidebar--open" : ""}`}>
         <div className="mobile-drawer-head"><strong>Navigation</strong><button className="icon-button" onClick={() => setMenuOpen(false)} aria-label="Close navigation"><X size={19}/></button></div>
-        <Link href="/" className="side-intro"><div><strong>{portfolio.name}</strong><span>Developer profile</span></div></Link>
         <span className="side-label">MENU</span>
         <nav className="side-nav" aria-label="Main navigation">{navigation.map(({href,title,icon: Icon}) => <Link key={href} href={href} onClick={() => setMenuOpen(false)} className={href === "/" ? (path === href ? "selected" : "") : (path === href || path.startsWith(`${href}/`) ? "selected" : "")}><Icon size={18}/><span>{title}</span></Link>)}</nav>
         <div className="side-divider"/><span className="side-label">CONNECT</span>
