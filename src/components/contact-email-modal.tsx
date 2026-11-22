@@ -44,7 +44,14 @@ export function ContactEmailModalButton({
         }),
       });
       const result: { error?: string } = await response.json().catch(() => ({}));
-      if (!response.ok) throw new Error(result.error || "Message could not be sent. Please try again.");
+      if (!response.ok) {
+        const fallback = response.status === 404
+          ? "The contact API was not found on this deployment. Check that your Vercel project uses the Next.js framework and redeploy."
+          : response.status === 500
+            ? "The contact service failed on the server. Please try again later."
+            : "Message could not be sent. Please try again.";
+        throw new Error(result.error || fallback);
+      }
       setStatus("success");
       form.reset();
     } catch (err) {

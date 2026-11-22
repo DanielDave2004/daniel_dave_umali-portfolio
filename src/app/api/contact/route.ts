@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 const MAX_BYTES = 12000;
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -54,8 +55,19 @@ export async function POST(request: Request) {
       signal: AbortSignal.timeout(10000),
     });
     if (!result.ok) {
-      console.error("Resend rejected portfolio message:", result.status, await result.text());
-      return NextResponse.json({ error: "The email service could not send your message." }, { status: 502 });
+      // Keep provider details in the Vercel function logs, not in the visitor's browser.
+      const details = await result.text();
+      console.error("Resend rejected portfolio message:", result.status, details);
+      if (result.status === 401) {
+        return NextResponse.json({ error: "Email delivery is unavailable because the server's email API key is invalid. Please contact me using my listed email address." }, { status: 503 });
+      }
+      if (result.status === 403 || result.status === 422) {
+        return NextResponse.json({ error: "Email delivery is not authorized for the configured sender. Please contact me using my listed email address." }, { status: 503 });
+      }
+      if (result.status === 429) {
+        return NextResponse.json({ error: "The email service is busy. Please try again in a moment." }, { status: 503 });
+      }
+      return NextResponse.json({ error: "The email service could not send your message. Please try again later." }, { status: 502 });
     }
     return NextResponse.json({ ok: true });
   } catch (error) {
